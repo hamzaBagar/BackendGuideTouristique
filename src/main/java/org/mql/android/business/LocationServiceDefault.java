@@ -11,7 +11,7 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/Location")
+
 public class LocationServiceDefault implements LocationService {
 	private LocationDao locationdao;
 

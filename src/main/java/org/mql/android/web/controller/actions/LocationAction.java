@@ -17,8 +17,8 @@ public class LocationAction {
 		this.service = service;
 	}
 
-	public String getAllLocations(String collectionName) {
+	public String[] getAllLocations(String collectionName) {
 		data = service.getAll(collectionName);
-		return "index";
+		return data;
 	}
 }

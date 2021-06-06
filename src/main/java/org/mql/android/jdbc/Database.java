@@ -3,21 +3,21 @@ package org.mql.android.jdbc;
 import java.util.Vector;
 
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.conversions.Bson;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 
 public class Database {
 	private MongoDatabase db;
-	//Gérer la conversion vers et depuis bson pour les POJOs
-	//private CodecRegistry pojoCodecRegistr ;
 	
 	Database(String host, int port, String source) {
 		connect(host, port, source);
-	
 	}
 
 	public Database(String source) {
@@ -27,7 +27,6 @@ public class Database {
 	private void connect(String host, int port, String source) {
 		MongoClient client = new MongoClient(host, port);
 		db = client.getDatabase(source);
-
 	}
 	
 	public String[] find(String collectionName) {
@@ -53,6 +52,10 @@ public class Database {
 		MongoCollection<Document> collection = db.getCollection(collectionName);
 		Document document = collection.find(filter).first();
 		
-		return document.toJson();
+		if (document != null) {
+			return document.toJson();
+		}
+		
+		return "{}";
 	}
 }

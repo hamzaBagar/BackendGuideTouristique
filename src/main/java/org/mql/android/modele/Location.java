@@ -7,6 +7,7 @@ public class Location {
 	private String cityName;
 	private String description;
 	private String picture;
+	
 	public ObjectId getId() {
 		return id;
 	}

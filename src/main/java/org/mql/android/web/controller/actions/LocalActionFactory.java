@@ -10,7 +10,7 @@ public class LocalActionFactory extends ActionFactory {
 	private LocationAction locationAction;
 
 	public LocalActionFactory(String source) {
-		Database db = new Database("GuideTouristique");
+		Database db = new Database(source);
 		LocationDao locationDao = new LocationDaoDefault(db);
 		LocationService service = new LocationServiceDefault(locationDao);
 		locationAction = new LocationAction(service);

@@ -7,10 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mql.android.web.controller.actions.ActionFactory;
+import org.mql.android.web.controller.actions.LocationAction;
+
 @WebServlet("/Controller")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+@Override
+public void init() throws ServletException {
+	ActionFactory factory = ActionFactory.getDefaultActionFactory("GuideTouristique");
+	LocationAction locationAction = factory.getLocationAction();
+}
 	public Controller() {
 		super();
 	}
